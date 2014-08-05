@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>Backbone Hello World!</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" href="styles/main.css"/>
+        <link rel="stylesheet" href="styles/bootstrap.css"/>
+        <style>
+          body {
+            padding-top: 40px;
+          }
+        </style>
+    </head>
+    <body>
+
+    <div class="container" id="main"></div>
+
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/backbone.marionette/lib/backbone.marionette.js"></script>
+    <!-- endbuild -->
+
+    <script type="text/template" id="hello-template">
+        <h1>Hello World!</h1>
+    </script>
+
+    <script>
+
+        var app = new Marionette.Application();
+
+        app.addRegions({
+            main: '#main'
+        });
+
+        var AppView = Marionette.ItemView.extend({
+
+            className: 'hero-unit',
+
+            template: '#hello-template',
+
+            initialize: function(){
+                this.render();
+            }
+
+        });
+
+        app.on('start', function(options) {
+            var appView = new AppView();
+
+            app.main.show(appView);
+        });
+
+        $(function(){
+            app.start();
+        });
+    </script>
+    </body>
+</html>
